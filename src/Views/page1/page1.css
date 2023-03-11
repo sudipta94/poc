@@ -1,0 +1,6 @@
+.firstbackground {
+  background-image: url("../../assets/background.png");
+  height: 1000vh;
+  width: 1000vw;
+  background-repeat: no-repeat, repeat;
+}

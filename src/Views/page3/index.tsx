@@ -1,6 +1,5 @@
 import { Button,Grid, Typography, Divider, TextField, Icon } from "@mui/material";
 import React from "react";
-import "./page2.css";
 import { useNavigate } from "react-router-dom";
 
 const Page2 = () => {
@@ -25,15 +24,14 @@ const Page2 = () => {
       </Grid>
       <Divider />
       <Grid xs={2}>
-      <Typography style={{ fontSize: 20 ,alignContent: "right"}}>Get Basic Details</Typography>
+      <Typography style={{ fontSize: 20 ,alignContent: "right"}}>Get Address Details</Typography>
         </Grid>
-      
       <Grid container justifyContent={"center"} padding={4}>
         <Grid item xs={7} style={{ margin: 2 }}>
           <TextField
             id="outlined-basic"
             style={{ width: "100%" }}
-            label="First Name"
+            label="Street Address"
             variant="outlined"
           />
         </Grid>
@@ -41,7 +39,8 @@ const Page2 = () => {
           <TextField
             id="outlined-basic"
             style={{ width: "100%" }}
-            label="Last Name"
+            label="Apartment, Suite, Building, Floor, etc.
+            optional"
             variant="outlined"
           />
         </Grid>
@@ -49,40 +48,23 @@ const Page2 = () => {
           <TextField
             id="outlined-basic"
             style={{ width: "100%" }}
-            label="Date of Birth
-            (MM/DD/YYYY)"
+            label="City"
             variant="outlined"
           />
         </Grid>
         <Grid item xs={7} style={{ margin: 2 }}>
           <TextField
             id="outlined-basic"
-            style={{ width: "100%" }}
-            label="Gender"
+            style={{ width: "50%" }}
+            label="State"
             variant="outlined"
           />
         </Grid>
         <Grid item xs={7} style={{ margin: 2 }}>
           <TextField
             id="outlined-basic"
-            style={{ width: "100%" }}
-            label="Marital Status"
-            variant="outlined"
-          />
-        </Grid>
-        <Grid item xs={7} style={{ margin: 2 }}>
-          <TextField
-            id="outlined-basic"
-            style={{ width: "100%" }}
-            label="Email Address"
-            variant="outlined"
-          />
-        </Grid>
-        <Grid item xs={7} style={{ margin: 2 }}>
-          <TextField
-            id="outlined-basic"
-            style={{ width: "100%" }}
-            label="Phone No"
+            style={{ width: "50%" }}
+            label="Zip"
             variant="outlined"
           />
         </Grid>
