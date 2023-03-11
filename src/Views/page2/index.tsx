@@ -1,9 +1,9 @@
 import { Grid, Typography, Divider, TextField } from "@mui/material";
 import React from "react";
-
+import "./index.css";
 const Page2 = () => {
   return (
-    <div>
+    <div className="background">
       <Grid container style={{ paddingTop: 10 }}>
         <Grid xs={2}>
           <img
