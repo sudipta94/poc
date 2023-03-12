@@ -1,8 +1,8 @@
-import { Button, Divider, Grid, TextField ,Icon} from "@mui/material";
+import { Button, Divider, Grid, TextField, Icon } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import DirectionsCarFilledIcon from '@mui/icons-material/DirectionsCarFilled';
+import DirectionsCarFilledIcon from "@mui/icons-material/DirectionsCarFilled";
 import "./page1.css";
 
 const Page1 = () => {
@@ -11,7 +11,7 @@ const Page1 = () => {
     navigateTo("/page2");
   };
   return (
-    <div style={{ margin: 15 }} >
+    <div style={{ margin: 15 }}>
       <Grid container style={{ paddingTop: 10 }}>
         <Grid xs={2}>
           <img
@@ -25,14 +25,27 @@ const Page1 = () => {
         </Grid>
         <Grid xs={1}></Grid>
       </Grid>
-      <Divider/>
-      <Grid container style={{ paddingTop: 250, paddingLeft: 350}}>
-       <DirectionsCarFilledIcon color="secondary" sx={{ fontSize: 100 }}/>
-       <Grid item xs={7} style={{ margin: 2 }}>
-          <Button size="large" variant="contained" onClick={() => Navigate()}>
+      <Divider />
+      <Grid
+        container
+        alignItems={"center"}
+        justifyContent={"center"}
+        style={{ paddingTop: 250 }}
+      >
+        <Grid item>
+          <DirectionsCarFilledIcon color="secondary" sx={{ fontSize: 100 }} />
+        </Grid>
+
+        <Grid item style={{ margin: 2 }}>
+          <Button
+            size="large"
+            style={{ width: 280 }}
+            variant="contained"
+            onClick={() => Navigate()}
+          >
             Start Quote
           </Button>
-       </Grid>
+        </Grid>
       </Grid>
     </div>
   );

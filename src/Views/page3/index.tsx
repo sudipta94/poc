@@ -1,14 +1,21 @@
-import { Button,Grid, Typography, Divider, TextField, Icon } from "@mui/material";
+import {
+  Button,
+  Grid,
+  Typography,
+  Divider,
+  TextField,
+  Icon,
+} from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const Page2 = () => {
   let navigateTo = useNavigate();
   const Navigate = () => {
-    navigateTo("/page3");
+    navigateTo("/page4");
   };
   return (
-    <div >
+    <div style={{ margin: 15 }}>
       <Grid container style={{ paddingTop: 10 }}>
         <Grid xs={2}>
           <img
@@ -23,9 +30,15 @@ const Page2 = () => {
         <Grid xs={1}></Grid>
       </Grid>
       <Divider />
-      <Grid xs={2}>
-      <Typography style={{ fontSize: 20 ,alignContent: "right"}}>Get Address Details</Typography>
+      <Grid container justifyContent={"center"} marginTop={3}>
+        <Grid item>
+          <Typography
+            style={{ fontSize: 20, fontWeight: "600", alignContent: "right" }}
+          >
+            Get Address Details
+          </Typography>
         </Grid>
+      </Grid>
       <Grid container justifyContent={"center"} padding={4}>
         <Grid item xs={7} style={{ margin: 2 }}>
           <TextField
@@ -53,26 +66,39 @@ const Page2 = () => {
           />
         </Grid>
         <Grid item xs={7} style={{ margin: 2 }}>
-          <TextField
-            id="outlined-basic"
-            style={{ width: "50%" }}
-            label="State"
-            variant="outlined"
-          />
+          <Grid container direction={"row"}>
+            <Grid item xs={6} paddingRight={0.5}>
+              <TextField
+                id="outlined-basic"
+                style={{ width: "100%" }}
+                label="State"
+                variant="outlined"
+              />
+            </Grid>
+            <Grid item xs={6} paddingLeft={0.5}>
+              <TextField
+                id="outlined-basic"
+                style={{ width: "100%" }}
+                label="Zip"
+                variant="outlined"
+              />
+            </Grid>
+          </Grid>
         </Grid>
         <Grid item xs={7} style={{ margin: 2 }}>
-          <TextField
-            id="outlined-basic"
-            style={{ width: "50%" }}
-            label="Zip"
-            variant="outlined"
-          />
+          <Grid container justifyContent={"center"}>
+            <Grid item>
+              <Button
+                style={{ width: 350, marginTop: 20 }}
+                size="large"
+                variant="contained"
+                onClick={() => Navigate()}
+              >
+                Continue
+              </Button>
+            </Grid>
+          </Grid>
         </Grid>
-        <Grid item xs={7} style={{ margin: 2 }}>
-          <Button size="large" variant="contained" onClick={() => Navigate()}>
-            Continue
-          </Button>
-       </Grid>
       </Grid>
     </div>
   );
