@@ -12,57 +12,84 @@ import {
   CardMedia,
   Collapse,
   IconButton,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  TextField,
 } from "@mui/material";
 import { red } from "@mui/material/colors";
 import React, { useState } from "react";
 import "./page4.css";
 import axios from "axios";
 const Page4 = () => {
-  const [selectcard, SetselectCard] = useState<boolean>(false);
-  const [selectedCar, setSelectedCar] = useState<string>("");
-  const Cars: any[] = [
+  const Carss: any[] = [
     {
       name: "Limousine",
       picture: "pic1.jpg",
       price: "$50000",
-      description:
-        "If you are looking for a luxury car, then Limousine is a perfect choice for you. The features in these cars are designed in such a way that they fulfil all the glamorous needs. The outer body is sleek and has luxurious compartments inside, making it one of the most expensive vehicles. These cars have a separate area for the driver, and the passengers have a different domain with the partition between the two. Toyota century, Hyundai Equus limousine, Great wall hover, and Chrysler 300 limousine are some of the limousines in production.",
     },
-    // {
-    //   name: "Convertibles",
-    //   picture: "pic2.jpg",
-    //   price: "$30000",
-    //   description:
-    //     "If you are looking for a luxury car, then Limousine is a perfect choice for you. The features in these cars are designed in such a way that they fulfil all the glamorous needs. The outer body is sleek and has luxurious compartments inside, making it one of the most expensive vehicles. These cars have a separate area for the driver, and the passengers have a different domain with the partition between the two. Toyota century, Hyundai Equus limousine, Great wall hover, and Chrysler 300 limousine are some of the limousines in production.",
-    // },
-    // {
-    //   name: "Micro Car",
-    //   picture: "pic3.jpg",
-    //   price: "$20000",
-    //   description:
-    //     "If you are looking for a luxury car, then Limousine is a perfect choice for you. The features in these cars are designed in such a way that they fulfil all the glamorous needs. The outer body is sleek and has luxurious compartments inside, making it one of the most expensive vehicles. These cars have a separate area for the driver, and the passengers have a different domain with the partition between the two. Toyota century, Hyundai Equus limousine, Great wall hover, and Chrysler 300 limousine are some of the limousines in production.",
-    // },
-    // {
-    //   name: "City Cars",
-    //   picture: "pic1.jpg",
-    //   price: "$10000",
-    //   description:
-    //     "If you are looking for a luxury car, then Limousine is a perfect choice for you. The features in these cars are designed in such a way that they fulfil all the glamorous needs. The outer body is sleek and has luxurious compartments inside, making it one of the most expensive vehicles. These cars have a separate area for the driver, and the passengers have a different domain with the partition between the two. Toyota century, Hyundai Equus limousine, Great wall hover, and Chrysler 300 limousine are some of the limousines in production.",
-    // },
+    {
+      name: "Convertibles",
+      picture: "pic2.jpg",
+      price: "$30000",
+    },
+    {
+      name: "Micro Car",
+      picture: "pic3.jpg",
+      price: "$20000",
+    },
+    {
+      name: "City Cars",
+      picture: "pic1.jpg",
+      price: "$10000",
+    },
   ];
+  const [selectcard, SetselectCard] = useState<boolean>(false);
+  const [selectedCar, setSelectedCar] = useState<string>("");
+  const [price, setprice] = useState<string>("");
+  const [open, setOpen] = React.useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const [Cars, setCar] = useState<any[]>([Carss[0]]);
+
   const Apicall = () => {
     let payload: any = {
       example: 45,
       example2: "jdjd",
     };
+    // use this for post api
+    // axios
+    //   .post("https://mocki.io/v1/d55c6c4e-aa96-4247-852d-b146061b57da", payload)
+    //   .then((response) => {
+    //     console.log(response.data);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+    //this is for my get api
     axios
-      .post("http://exampleap.com", payload)
+      .get("https://mocki.io/v1/d55c6c4e-aa96-4247-852d-b146061b57da", payload)
       .then((response) => {
-        console.log(response.data);
+        setprice(response.data.price);
       })
       .catch((err) => {
         console.log(err);
       });
+  };
+  const AddNew = () => {
+    let car: any[] = JSON.parse(JSON.stringify(Cars));
+    car.push(
+      car.length < Carss.length ? Carss[car.length] : Carss[Carss.length - 1]
+    );
+    setCar(car);
+    handleClose();
   };
   return (
     <div style={{ margin: 15 }}>
@@ -107,10 +134,11 @@ const Page4 = () => {
         {selectcard &&
           Cars.map((item, index) => (
             <Card
-              onClick={() => setSelectedCar(item.name)}
+              style={{ width: 350, height: 450 }}
+              // onClick={() => setSelectedCar(item.name)}
               className="card"
               sx={{
-                maxWidth: 345,
+                Width: 345,
                 margin: 2,
                 backgroundColor: selectedCar == item.name ? "#D6DED7" : "#ffff",
               }}
@@ -121,37 +149,35 @@ const Page4 = () => {
               />
               <CardMedia
                 component="img"
-                height="194"
+                height="400"
                 image={require(`../../assets/${item.picture}`)}
                 alt="Paella dish"
               />
-              <CardContent>
-                <Typography variant="body2" color="text.secondary">
-                  {item.description}
-                </Typography>
-              </CardContent>
-              <CardActions disableSpacing>
-                {/* <IconButton aria-label="add to favorites">
-                  <FavoriteIcon />
-                </IconButton>
-                <IconButton aria-label="share">
-                  <ShareIcon />
-                </IconButton> */}
-              </CardActions>
             </Card>
           ))}
-        <Grid item>
+        {selectcard && (
+          <Grid item>
             <Button
               style={{ width: 350, marginTop: 20, marginBottom: 10 }}
               size="large"
               variant="contained"
-              onClick={() => Apicall()}
+              onClick={() => handleClickOpen()}
             >
               Add car
             </Button>
-          </Grid>  
+          </Grid>
+        )}
       </Grid>
-      {selectedCar != "" && (
+      <Grid container justifyContent={"center"}>
+        <Grid item>
+          {!!price && (
+            <Typography style={{ fontSize: 20 }}>
+              YOUR PREMIUM IS : <b>{price}</b>
+            </Typography>
+          )}
+        </Grid>
+      </Grid>
+      {selectcard && (
         <Grid container justifyContent={"center"}>
           <Grid item>
             <Button
@@ -165,6 +191,40 @@ const Page4 = () => {
           </Grid>
         </Grid>
       )}
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">Add another car</DialogTitle>
+        <DialogContent>
+          <Grid container justifyContent={"center"} padding={4}>
+            <Grid item xs={10} style={{ margin: 2 }}>
+              <TextField
+                id="outlined-basic"
+                style={{ width: "100%" }}
+                label="Car Model"
+                variant="outlined"
+              />
+            </Grid>
+            <Grid item xs={10} style={{ margin: 2 }}>
+              <TextField
+                id="outlined-basic"
+                style={{ width: "100%" }}
+                label="Year"
+                variant="outlined"
+              />
+            </Grid>
+          </Grid>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={() => AddNew()} autoFocus>
+            ADD
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };
