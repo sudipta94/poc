@@ -28,27 +28,27 @@ const Page4 = () => {
       description:
         "If you are looking for a luxury car, then Limousine is a perfect choice for you. The features in these cars are designed in such a way that they fulfil all the glamorous needs. The outer body is sleek and has luxurious compartments inside, making it one of the most expensive vehicles. These cars have a separate area for the driver, and the passengers have a different domain with the partition between the two. Toyota century, Hyundai Equus limousine, Great wall hover, and Chrysler 300 limousine are some of the limousines in production.",
     },
-    {
-      name: "Convertibles",
-      picture: "pic2.jpg",
-      price: "$30000",
-      description:
-        "If you are looking for a luxury car, then Limousine is a perfect choice for you. The features in these cars are designed in such a way that they fulfil all the glamorous needs. The outer body is sleek and has luxurious compartments inside, making it one of the most expensive vehicles. These cars have a separate area for the driver, and the passengers have a different domain with the partition between the two. Toyota century, Hyundai Equus limousine, Great wall hover, and Chrysler 300 limousine are some of the limousines in production.",
-    },
-    {
-      name: "Micro Car",
-      picture: "pic3.jpg",
-      price: "$20000",
-      description:
-        "If you are looking for a luxury car, then Limousine is a perfect choice for you. The features in these cars are designed in such a way that they fulfil all the glamorous needs. The outer body is sleek and has luxurious compartments inside, making it one of the most expensive vehicles. These cars have a separate area for the driver, and the passengers have a different domain with the partition between the two. Toyota century, Hyundai Equus limousine, Great wall hover, and Chrysler 300 limousine are some of the limousines in production.",
-    },
-    {
-      name: "City Cars",
-      picture: "pic1.jpg",
-      price: "$10000",
-      description:
-        "If you are looking for a luxury car, then Limousine is a perfect choice for you. The features in these cars are designed in such a way that they fulfil all the glamorous needs. The outer body is sleek and has luxurious compartments inside, making it one of the most expensive vehicles. These cars have a separate area for the driver, and the passengers have a different domain with the partition between the two. Toyota century, Hyundai Equus limousine, Great wall hover, and Chrysler 300 limousine are some of the limousines in production.",
-    },
+    // {
+    //   name: "Convertibles",
+    //   picture: "pic2.jpg",
+    //   price: "$30000",
+    //   description:
+    //     "If you are looking for a luxury car, then Limousine is a perfect choice for you. The features in these cars are designed in such a way that they fulfil all the glamorous needs. The outer body is sleek and has luxurious compartments inside, making it one of the most expensive vehicles. These cars have a separate area for the driver, and the passengers have a different domain with the partition between the two. Toyota century, Hyundai Equus limousine, Great wall hover, and Chrysler 300 limousine are some of the limousines in production.",
+    // },
+    // {
+    //   name: "Micro Car",
+    //   picture: "pic3.jpg",
+    //   price: "$20000",
+    //   description:
+    //     "If you are looking for a luxury car, then Limousine is a perfect choice for you. The features in these cars are designed in such a way that they fulfil all the glamorous needs. The outer body is sleek and has luxurious compartments inside, making it one of the most expensive vehicles. These cars have a separate area for the driver, and the passengers have a different domain with the partition between the two. Toyota century, Hyundai Equus limousine, Great wall hover, and Chrysler 300 limousine are some of the limousines in production.",
+    // },
+    // {
+    //   name: "City Cars",
+    //   picture: "pic1.jpg",
+    //   price: "$10000",
+    //   description:
+    //     "If you are looking for a luxury car, then Limousine is a perfect choice for you. The features in these cars are designed in such a way that they fulfil all the glamorous needs. The outer body is sleek and has luxurious compartments inside, making it one of the most expensive vehicles. These cars have a separate area for the driver, and the passengers have a different domain with the partition between the two. Toyota century, Hyundai Equus limousine, Great wall hover, and Chrysler 300 limousine are some of the limousines in production.",
+    // },
   ];
   const Apicall = () => {
     let payload: any = {
@@ -140,6 +140,16 @@ const Page4 = () => {
               </CardActions>
             </Card>
           ))}
+        <Grid item>
+            <Button
+              style={{ width: 350, marginTop: 20, marginBottom: 10 }}
+              size="large"
+              variant="contained"
+              onClick={() => Apicall()}
+            >
+              Add car
+            </Button>
+          </Grid>  
       </Grid>
       {selectedCar != "" && (
         <Grid container justifyContent={"center"}>
