@@ -65,7 +65,7 @@ const Page4 = () => {
       example2: "jdjd",
     };
     axios
-      .get("https://mocki.io/v1/d55c6c4e-aa96-4247-852d-b146061b57da", payload)
+      . get("https://mocki.io/v1/d55c6c4e-aa96-4247-852d-b146061b57da", payload)
       .then((response) => {
         setprice(response.data.price);
       })
