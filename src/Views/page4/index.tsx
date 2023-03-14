@@ -23,6 +23,8 @@ import { red } from "@mui/material/colors";
 import React, { useState } from "react";
 import "./page4.css";
 import axios from "axios";
+import data from "./Views/data/accountdata.json;
+
 const Page4 = () => {
   const Carss: any[] = [
     {
@@ -60,20 +62,7 @@ const Page4 = () => {
   const [Cars, setCar] = useState<any[]>([Carss[0]]);
 
   const Apicall = () => {
-    let payload: any = {
-      example: 45,
-      example2: "jdjd",
-    };
-    // use this for post api
-    // axios
-    //   .post("https://mocki.io/v1/d55c6c4e-aa96-4247-852d-b146061b57da", payload)
-    //   .then((response) => {
-    //     console.log(response.data);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-    //this is for my get api
+    let payload: any = require('./data/accountdata.json');
     axios
       .get("https://mocki.io/v1/d55c6c4e-aa96-4247-852d-b146061b57da", payload)
       .then((response) => {
@@ -93,6 +82,13 @@ const Page4 = () => {
   };
   return (
     <div style={{ margin: 15 }}>
+      <div>
+      <div>Name : {data.name}</div>
+      <div>Email : {data.email}</div>
+      <div>Website : {data.website}</div>
+      <div><label>Country :</label>
+      </div>
+  </div>
       <Grid container style={{ paddingTop: 10 }}>
         <Grid xs={2}>
           <img
