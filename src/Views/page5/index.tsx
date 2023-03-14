@@ -21,31 +21,31 @@ import {
 } from "@mui/material";
 import { red } from "@mui/material/colors";
 import React, { useState } from "react";
-import "./page4.css";
+import "./page5.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 const Page4 = () => {
-  const Drivers: any[] = [
+  const Carss: any[] = [
     {
-      name: "Paul Dobson",
-      LicenseState: "Wisconsin",
-      License: "AR3214",
+      name: "Limousine",
+      picture: "pic1.jpg",
+      price: "$50000",
     },
     {
-      name: "Andrew Dobson",
-      LicenseState: "Wisconsin",
-      License: "AR3214",
+      name: "Convertibles",
+      picture: "pic2.jpg",
+      price: "$30000",
     },
     {
-      name: "Thomas Dobson",
-      LicenseState: "Wisconsin",
-      License: "AR3214",
+      name: "Micro Car",
+      picture: "pic3.jpg",
+      price: "$20000",
+    },
+    {
+      name: "City Cars",
+      picture: "pic1.jpg",
+      price: "$10000",
     },
   ];
-  let navigateTo = useNavigate();
-  const Navigate = () => {
-    navigateTo("/page5");
-  };
   const [selectcard, SetselectCard] = useState<boolean>(false);
   const [selectedCar, setSelectedCar] = useState<string>("");
   const [price, setprice] = useState<string>("");
@@ -57,11 +57,26 @@ const Page4 = () => {
   const handleClose = () => {
     setOpen(false);
   };
-  const [Cars, setCar] = useState<any[]>([Drivers[0]]);
+  const [Cars, setCar] = useState<any[]>([Carss[0]]);
+
+  const Apicall = () => {
+    let payload: any = {
+      example: 45,
+      example2: "jdjd",
+    };
+    axios
+      .get("https://mocki.io/v1/d55c6c4e-aa96-4247-852d-b146061b57da", payload)
+      .then((response) => {
+        setprice(response.data.price);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const AddNew = () => {
     let car: any[] = JSON.parse(JSON.stringify(Cars));
     car.push(
-      car.length < Drivers.length ? Drivers[car.length] : Drivers[Drivers.length - 1]
+      car.length < Carss.length ? Carss[car.length] : Carss[Carss.length - 1]
     );
     setCar(car);
     handleClose();
@@ -90,75 +105,99 @@ const Page4 = () => {
           <Typography
             style={{ fontSize: 20, fontWeight: "600", alignContent: "right" }}
           >
-            Driver Details
+            Get Car Details
           </Typography>
         </Grid>
       </Grid>
+      {!selectcard && (
         <Grid container justifyContent={"center"}>
           <Grid item>
             <Button
               style={{ width: 350, marginTop: 20 }}
               size="large"
               variant="contained"
-              onClick={() => handleClickOpen()}
+              onClick={() => SetselectCard(true)}
             >
-              Add Driver
+              Select Car
             </Button>
           </Grid>
         </Grid>
+      )}
       <Grid container direction={"row"}>
         {selectcard &&
           Cars.map((item, index) => (
             <Card
-              style={{ width: 250, height: 200 }}
-              onClick={() => setSelectedCar(item.name)}
+              style={{ width: 350, height: 450 }}
+              // onClick={() => setSelectedCar(item.name)}
               className="card"
               sx={{
-                Width: 30,
+                Width: 345,
                 margin: 2,
-                
+                backgroundColor: selectedCar == item.name ? "#D6DED7" : "#ffff",
               }}
             >
               <CardHeader
                 title={item.name}
+                subheader={`Price : ${item.price}`}
               />
-              <CardHeader
-                title={item.LicenseState}
-              />
-              <CardHeader
-                title={item.License}
+              <CardMedia
+                component="img"
+                height="400"
+                image={require(`../../assets/${item.picture}`)}
+                alt="Paella dish"
               />
             </Card>
           ))}
+        {selectcard && (
+          <Grid item>
+            <Button
+              style={{ width: 350, marginTop: 20, marginBottom: 10 }}
+              size="large"
+              variant="contained"
+              onClick={() => handleClickOpen()}
+            >
+              Add car
+            </Button>
+          </Grid>
+        )}
       </Grid>
-      <Grid item xs={7} style={{ margin: 2 }}>
-          <Grid container justifyContent={"center"}>
-            <Grid item>
-              <Button
-                style={{ width: 350, marginTop: 20 }}
-                size="large"
-                variant="contained"
-                onClick={() => Navigate()}
-              >
-                Continue
-              </Button>
-            </Grid>
+      <Grid container justifyContent={"center"}>
+        <Grid item>
+          {!!price && (
+            <Typography style={{ fontSize: 20 }}>
+              YOUR PREMIUM IS : <b>{price}</b>
+            </Typography>
+          )}
+        </Grid>
+      </Grid>
+      {selectcard && (
+        <Grid container justifyContent={"center"}>
+          <Grid item>
+            <Button
+              style={{ width: 350, marginTop: 20, marginBottom: 10 }}
+              size="large"
+              variant="contained"
+              onClick={() => Apicall()}
+            >
+              Get Quote
+            </Button>
           </Grid>
         </Grid>
+      )}
       <Dialog
         open={open}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">Adding Driver</DialogTitle>
+        <DialogTitle id="alert-dialog-title">Add another car</DialogTitle>
         <DialogContent>
           <Grid container justifyContent={"center"} padding={4}>
             <Grid item xs={10} style={{ margin: 2 }}>
               <TextField
                 id="outlined-basic"
                 style={{ width: "100%" }}
-                label="Driver Name"
+                label="Car Model"
                 variant="outlined"
               />
             </Grid>
@@ -166,15 +205,7 @@ const Page4 = () => {
               <TextField
                 id="outlined-basic"
                 style={{ width: "100%" }}
-                label="License Number"
-                variant="outlined"
-              />
-            </Grid>
-            <Grid item xs={10} style={{ margin: 2 }}>
-              <TextField
-                id="outlined-basic"
-                style={{ width: "100%" }}
-                label="License State"
+                label="Year"
                 variant="outlined"
               />
             </Grid>
@@ -182,8 +213,8 @@ const Page4 = () => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={() => {AddNew();SetselectCard(true)}} autoFocus>
-            ADD Driver
+          <Button onClick={() => AddNew()} autoFocus>
+            ADD
           </Button>
         </DialogActions>
       </Dialog>
