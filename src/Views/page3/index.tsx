@@ -16,16 +16,16 @@ const Page2 = () => {
   const Navigate = () => {
     navigateTo("/page4");
   };
-  
+
   const PostData = () => {
-    let payload: any = JSON.stringify(jsonData);
     axios
-      .post("https://mocki.io/v1/d55c6c4e-aa96-4247-852d-b146061b57da", payload)
-      .then((response) => {
-        
-      })
+      .post(
+        "https://mocki.io/v1/d55c6c4e-aa96-4247-852d-b146061b57da",
+        jsonData
+      )
+      .then((response) => {})
       .catch((err) => {
-        console.log(payload)
+        console.log(jsonData);
         console.log(err);
       });
   };
@@ -107,7 +107,10 @@ const Page2 = () => {
                 style={{ width: 350, marginTop: 20 }}
                 size="large"
                 variant="contained"
-                onClick={() => {Navigate();PostData()}}
+                onClick={() => {
+                  Navigate();
+                  PostData();
+                }}
               >
                 Continue
               </Button>
