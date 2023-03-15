@@ -23,7 +23,9 @@ const Page2 = () => {
         "https://mocki.io/v1/d55c6c4e-aa96-4247-852d-b146061b57da",
         jsonData
       )
-      .then((response) => {})
+      .then((response) => {
+        console.log(response);
+      })
       .catch((err) => {
         console.log(jsonData);
         console.log(err);
