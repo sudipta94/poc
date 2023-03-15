@@ -57,20 +57,20 @@ const Page4 = () => {
   const handleClose = () => {
     setOpen(false);
   };
-  const [Cars, setCar] = useState<any[]>([Drivers[0]]);
+  const [Cars, setCar] = useState<any[]>([]);
   const AddNew = () => {
     let car: any[] = JSON.parse(JSON.stringify(Cars));
     car.push(
-      car.length < Drivers.length ? Drivers[car.length] : Drivers[Drivers.length - 1]
+      car.length < Drivers.length
+        ? Drivers[car.length]
+        : Drivers[Drivers.length - 1]
     );
     setCar(car);
     handleClose();
   };
   return (
     <div style={{ margin: 15 }}>
-      <div>
-
-  </div>
+      <div></div>
       <Grid container style={{ paddingTop: 10 }}>
         <Grid xs={2}>
           <img
@@ -94,18 +94,18 @@ const Page4 = () => {
           </Typography>
         </Grid>
       </Grid>
-        <Grid container justifyContent={"center"}>
-          <Grid item>
-            <Button
-              style={{ width: 350, marginTop: 20 }}
-              size="large"
-              variant="contained"
-              onClick={() => handleClickOpen()}
-            >
-              Add Driver
-            </Button>
-          </Grid>
+      <Grid container justifyContent={"center"}>
+        <Grid item>
+          <Button
+            style={{ width: 350, marginTop: 20 }}
+            size="large"
+            variant="contained"
+            onClick={() => handleClickOpen()}
+          >
+            Add Driver
+          </Button>
         </Grid>
+      </Grid>
       <Grid container direction={"row"}>
         {selectcard &&
           Cars.map((item, index) => (
@@ -116,22 +116,16 @@ const Page4 = () => {
               sx={{
                 Width: 30,
                 margin: 2,
-                
               }}
             >
-              <CardHeader
-                title={item.name}
-              />
-              <CardHeader
-                title={item.LicenseState}
-              />
-              <CardHeader
-                title={item.License}
-              />
+              <CardHeader title={item.name} />
+              <CardHeader title={item.LicenseState} />
+              <CardHeader title={item.License} />
             </Card>
           ))}
       </Grid>
-      <Grid item xs={7} style={{ margin: 2 }}>
+      {!!Cars && Cars.length > 0 && (
+        <Grid item xs={7} style={{ margin: 2 }}>
           <Grid container justifyContent={"center"}>
             <Grid item>
               <Button
@@ -145,6 +139,8 @@ const Page4 = () => {
             </Grid>
           </Grid>
         </Grid>
+      )}
+
       <Dialog
         open={open}
         onClose={handleClose}
@@ -182,7 +178,13 @@ const Page4 = () => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={() => {AddNew();SetselectCard(true)}} autoFocus>
+          <Button
+            onClick={() => {
+              AddNew();
+              SetselectCard(true);
+            }}
+            autoFocus
+          >
             ADD Driver
           </Button>
         </DialogActions>

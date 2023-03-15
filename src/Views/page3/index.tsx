@@ -10,19 +10,36 @@ import React from "react";
 import jsonData from "./accountdata.json";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Controller, useForm } from "react-hook-form";
 
-const Page2 = () => {
+const Page2 = ({ MainPayload, Setpayload }: any) => {
+  const {
+    control,
+    register,
+    handleSubmit,
+    formState,
+    setValue,
+    getValues,
+    setError,
+    clearErrors,
+    reset,
+    formState: { errors },
+  } = useForm();
   let navigateTo = useNavigate();
   const Navigate = () => {
     navigateTo("/page4");
   };
 
-  const PostData = () => {
+  const submit = (formData: any) => {
+    let payload: any = {
+      ...MainPayload,
+      ...formData,
+    };
+    console.log(payload);
+
+    //payload is your marged data
     axios
-      .post(
-        "https://mocki.io/v1/d55c6c4e-aa96-4247-852d-b146061b57da",
-        jsonData
-      )
+      .post("https://mocki.io/v1/d55c6c4e-aa96-4247-852d-b146061b57da", payload)
       .then((response) => {
         console.log(response);
       })
@@ -30,6 +47,7 @@ const Page2 = () => {
         console.log(jsonData);
         console.log(err);
       });
+    Navigate();
   };
   return (
     <div style={{ margin: 15 }}>
@@ -58,11 +76,27 @@ const Page2 = () => {
       </Grid>
       <Grid container justifyContent={"center"} padding={4}>
         <Grid item xs={7} style={{ margin: 2 }}>
-          <TextField
-            id="outlined-basic"
-            style={{ width: "100%" }}
-            label="Street Address"
-            variant="outlined"
+          <Controller
+            control={control}
+            name="street"
+            defaultValue={""}
+            rules={{ required: true }}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <TextField
+                id="outlined-basic"
+                style={{ width: "100%" }}
+                label="Street Address"
+                variant="outlined"
+                onBlur={onBlur}
+                onChange={onChange}
+                value={value}
+                error={!!errors["street"]}
+                helperText={
+                  errors.customer_name &&
+                  `${errors.customer_name.message}* This field is Required`
+                }
+              />
+            )}
           />
         </Grid>
         <Grid item xs={7} style={{ margin: 2 }}>
@@ -109,10 +143,7 @@ const Page2 = () => {
                 style={{ width: 350, marginTop: 20 }}
                 size="large"
                 variant="contained"
-                onClick={() => {
-                  Navigate();
-                  PostData();
-                }}
+                onClick={handleSubmit(submit)}
               >
                 Continue
               </Button>
