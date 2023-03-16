@@ -7,31 +7,10 @@ import Page2 from "./Views/page2";
 import Page3 from "./Views/page3";
 import Page4 from "./Views/page4";
 import Page5 from "./Views/page5";
+import jsonData from "./accountdata.json";
 
 function App() {
-  const [MainPayload, Setpayload] = useState<any>({
-    name: "LearnBestCoding",
-    website: "www.learnbestcoding.com",
-    email: "something@learnbestcoding.com",
-    country: [
-      {
-        id: "1",
-        name: "USA",
-      },
-      {
-        id: "2",
-        name: "Canada",
-      },
-      {
-        id: "3",
-        name: "Japan",
-      },
-      {
-        id: "4",
-        name: "Australia",
-      },
-    ],
-  });
+  const [MainPayload, Setpayload] = useState<any>(jsonData);
   return (
     <Routes>
       <Route path="/page1/" element={<Page1 />} />

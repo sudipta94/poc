@@ -7,7 +7,7 @@ import {
   Icon,
 } from "@mui/material";
 import React from "react";
-import jsonData from "./accountdata.json";
+
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Controller, useForm } from "react-hook-form";
@@ -44,8 +44,8 @@ const Page2 = ({ MainPayload, Setpayload }: any) => {
         console.log(response);
       })
       .catch((err) => {
-        console.log(jsonData);
-        console.log(err);
+        //console.log(jsonData);
+        //console.log(err);
       });
     Navigate();
   };
