@@ -31,7 +31,18 @@ const Page2 = ({ MainPayload, Setpayload }: any) => {
   const submit = (formdata: any) => {
     Setpayload({
       ...MainPayload,
-      ...formdata,
+      included: {
+        ...MainPayload.included,
+        Accountcontact: [
+          {
+            ...MainPayload.included[0],
+            attributes: {
+              firstName: formdata.firstName,
+              lastName: formdata.lastName,
+            },
+          },
+        ],
+      },
     });
     Navigate();
   };

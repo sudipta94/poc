@@ -39,7 +39,16 @@ const Page2 = ({ MainPayload, Setpayload }: any) => {
 
     //payload is your marged data
     axios
-      .post("https://mocki.io/v1/d55c6c4e-aa96-4247-852d-b146061b57da", payload)
+      .post(
+        "https://mocki.io/v1/d55c6c4e-aa96-4247-852d-b146061b57da",
+        payload,
+        {
+          auth: {
+            username: "",
+            password: "",
+          },
+        }
+      )
       .then((response) => {
         console.log(response);
       })
