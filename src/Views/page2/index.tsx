@@ -65,7 +65,7 @@ const Page2 = ({ MainPayload, Setpayload }: any) => {
         <Grid item xs={7} style={{ margin: 2 }}>
           <Controller
             control={control}
-            name="first_name"
+            name="firstName"
             defaultValue={""}
             rules={{ required: true }}
             render={({ field: { onChange, onBlur, value } }) => (
@@ -77,7 +77,7 @@ const Page2 = ({ MainPayload, Setpayload }: any) => {
                 onBlur={onBlur}
                 onChange={onChange}
                 value={value}
-                error={!!errors["first_name"]}
+                error={!!errors["firstName"]}
                 helperText={
                   errors.customer_name &&
                   `${errors.customer_name.message}* This field is Required`
@@ -89,7 +89,7 @@ const Page2 = ({ MainPayload, Setpayload }: any) => {
         <Grid item xs={7} style={{ margin: 2 }}>
           <Controller
             control={control}
-            name="last_name"
+            name="lastName"
             defaultValue={""}
             rules={{ required: true }}
             render={({ field: { onChange, onBlur, value } }) => (
@@ -101,7 +101,7 @@ const Page2 = ({ MainPayload, Setpayload }: any) => {
                 onBlur={onBlur}
                 onChange={onChange}
                 value={value}
-                error={!!errors["last_name"]}
+                error={!!errors["lastName"]}
                 helperText={
                   errors.customer_name &&
                   `${errors.customer_name.message}* This field is Required`

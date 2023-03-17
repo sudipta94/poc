@@ -78,7 +78,7 @@ const Page2 = ({ MainPayload, Setpayload }: any) => {
         <Grid item xs={7} style={{ margin: 2 }}>
           <Controller
             control={control}
-            name="street"
+            name="addressline1"
             defaultValue={""}
             rules={{ required: true }}
             render={({ field: { onChange, onBlur, value } }) => (
@@ -90,7 +90,7 @@ const Page2 = ({ MainPayload, Setpayload }: any) => {
                 onBlur={onBlur}
                 onChange={onChange}
                 value={value}
-                error={!!errors["street"]}
+                error={!!errors["addressline1"]}
                 helperText={
                   errors.customer_name &&
                   `${errors.customer_name.message}* This field is Required`
